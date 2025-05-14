@@ -110,10 +110,6 @@ Request:
             "updated_at": "2025-05-14T10:10:00.000000Z"
         }
 
-Conclusion
-This project provides a basic user management system that can be used as a foundation for further development. It allows you to handle user operations like CRUD and querying in an efficient manner. The setup with SQLite makes it lightweight and easy to manage for smaller applications.
-
-This project is licensed under the MIT License - see the LICENSE file for details.
 
 
 
