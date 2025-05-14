@@ -5,6 +5,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\QueryFilters\UserFilter;
+use App\Http\Resources\UserResource;
 
 class UserController extends Controller
 {
@@ -25,7 +26,7 @@ class UserController extends Controller
         /**
          * Applying pagination, currently set to 10 by default
         */
-        return response()->json(
+        return UserResource::collection(
             $query->paginate($request->get('per_page', 10))
         );
     }
@@ -58,7 +59,7 @@ class UserController extends Controller
         /**
          * Returning a code to prove the transaction was succesful.
         */
-        return response()->json($user, 201);
+        return new UserResource($user);
     }
 
     /**
@@ -67,7 +68,7 @@ class UserController extends Controller
     public function show(string $id)
     {
         $user = User::findOrFail($id);
-        return response()->json($user);
+        return new UserResource($user);
     }
 
     /**
@@ -90,7 +91,7 @@ class UserController extends Controller
             'phone_number' => $request->phone_number ?? $user->phone_number,
         ]);
 
-        return response()->json($user);
+        return new UserResource($user);
     }
 
     /**
