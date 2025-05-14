@@ -9,9 +9,9 @@ use App\Models\User;
  */
 interface UserServiceInterface
 {
-    public function listUsers(Request $request): mixed;
-    public function createUser(Request $request): User;
-    public function getUser(string $id): User;
-    public function updateUser(Request $request, string $id): User;
-    public function deleteUser(string $id): bool;
+    public function listUsers(Request $request);
+    public function createUser(Request $request);
+    public function getUser(string $id);
+    public function updateUser(Request $request, string $id);
+    public function deleteUser(string $id): void;
 }
