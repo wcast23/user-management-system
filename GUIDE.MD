@@ -9,11 +9,12 @@ SQLite (or any other database if you decide to switch)
 
 Installation
 1 - Clone the repository:
-    git clone https://your-repository-url.git
+    git clone https://github.com/wcast23/user-management-system.git
     cd user-management-system
 
 2 - Install the dependencies:
-    composer install
+    In the proejct root directory execute:
+        composer install
 
 3 - Set up your environment variables:
     cp .env.example .env
@@ -22,17 +23,23 @@ Installation
     Make sure to configure SQLite in the .env file:
 
     DB_CONNECTION=sqlite
-    DB_DATABASE=database/database.sqlite
+    DB_DATABASE=your-database-path/user_management_system.sqlite
+
+    - Create the database file in the following location:
+        App/database/user_management_system.sqlite
 
 5 - Run the migrations and seeders:
-    php artisan migrate --seed
-    This will create the database structure and populate it with initial data.
+    php artisan migrate
+    This will create the database structure.
+
+    php artisan db:seed --class=UserSeeder
+    This will populate the database by executing the specific seeder created "UserSeeder"
+    database/seeders/UserSeeder
 
 Running the Project
 
 To start the application, you can use the built-in Laravel development server:
     php artisan serve
-
     By default, the app will be accessible at http://localhost:8000.
 
 --------------------------------------------------------------------
@@ -44,7 +51,6 @@ Retrieve a paginated list of users.
 Query Parameters:
 
 name: Filter users by name.
-
 email: Filter users by email.
 
 
@@ -72,19 +78,24 @@ Testing
 You can test the endpoints using Postman or any other API testing tool.
 
 Example for GET /users (List Users):
+Filter by name:
 Request:
     GET http://localhost:8000/api/users?name=John
+
+Filter by email:
+Request:
+    GET http://localhost:8000/api/users?email=jose.cole@example.com
 
 Response:
     {
   "data": [
     {
-      "id": 1,
-      "name": "John Doe",
-      "email": "john@example.com",
-      "phone_number": "1234567890",
-      "created_at": "2025-05-14T10:00:00.000000Z",
-      "updated_at": "2025-05-14T10:00:00.000000Z"
+        "id": 1,
+        "name": "Rhiannon Witting",
+        "email": "jose.cole@example.com",
+        "phone_number": "925.322.2760",
+        "created_at": "2025-05-15T01:40:22.000000Z",
+        "updated_at": "2025-05-15T01:40:22.000000Z"
     },
     ...
   ]
